@@ -3,8 +3,6 @@
 Very simple demo explainatory demo exhibiting some of the basics of Spring Data JPA, and demonstrating a way to expose
 multiple views of the same model.
 
-For more details, see [the official Spring examples](https://github.com/spring-projects/spring-data-examples).
-
 #### Widgets, Sprockets, and Categories
 The data model is excessively simple, yet ridiculously abstract. The point of this is to focus on the features provided by Spring Data
 JPA / Spring Boot, rather than the details of the application.
@@ -50,4 +48,8 @@ Spring Data JPA has support for Asynchronous queries which return a Future. This
 multiple unrelated database calls in parallel, but also needs to be tested against an actual DB container. See `WidgetRepository::*Async*`.
 
 **Caveat:** This still needs to be tested against an actual DB container. (H2 doesn't count!)
+
+### Related Projects
+
+If you want to learn more, check out [the official Spring examples](https://github.com/spring-projects/spring-data-examples).
 
