@@ -4,10 +4,9 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A Sprocket is an abstract entity which has an id and a type.
@@ -19,7 +18,7 @@ public class Sprocket {
     public enum Type {
         ALEPH,
         BET,
-        GIMMEL
+        GIMEL
     }
 
     @Id
@@ -27,6 +26,9 @@ public class Sprocket {
     private Long id;
 
     private Type type;
+
+    @ManyToMany(mappedBy="sprockets")
+    private List<Bin> bins = new ArrayList<>();
 
     protected Sprocket() { }
 

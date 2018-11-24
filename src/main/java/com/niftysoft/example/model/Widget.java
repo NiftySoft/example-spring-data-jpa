@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -30,7 +32,7 @@ public class Widget implements WidgetViews.SprocketsOnly, WidgetViews.IdOnly {
 
     @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="widgetId")
-    private List<Sprocket> sprockets;
+    private List<Sprocket> sprockets = new ArrayList<>();
 
     protected Widget() { }
 

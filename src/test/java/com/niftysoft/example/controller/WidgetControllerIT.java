@@ -55,4 +55,13 @@ public class WidgetControllerIT {
                 .andDo(print())
                 .andExpect(status().isOk());
     }
+
+    @Test
+    public void getNonExistentWidgetTest() throws Exception {
+
+        mockMvc.perform(get("/widget/1")
+                .accept(MediaType.APPLICATION_JSON_UTF8))
+                .andDo(print())
+                .andExpect(status().isNotFound());
+    }
 }
