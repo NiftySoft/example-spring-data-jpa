@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Future;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -121,10 +122,9 @@ public class WidgetRespositoryTest {
 
         underTest.saveAll(Arrays.asList(widgets));
 
-        // Don't do this, when there is a Count method.
-        long count = underTest.findAllStreamBy().count();
-
-        assertThat(count).isEqualTo(1000L);
+        try (Stream<Widget> stream = underTest.findAllStreamBy()) {
+            assertThat(stream.count()).isEqualTo(1000L);
+        }
     }
 
     @Test
