@@ -4,7 +4,6 @@ import com.niftysoft.example.model.views.WidgetViews;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.domain.AbstractAggregateRoot;
 
 import javax.persistence.*;
 import java.util.List;
@@ -30,7 +29,7 @@ public class Widget implements WidgetViews.SprocketsOnly, WidgetViews.IdOnly {
     private Type type;
 
     @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name="id")
+    @JoinColumn(name="widgetId")
     private List<Sprocket> sprockets;
 
     protected Widget() { }
