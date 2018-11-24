@@ -3,6 +3,8 @@
 Very simple demo explainatory demo exhibiting some of the basics of Spring Data JPA, and demonstrating a way to expose
 multiple views of the same model.
 
+For more details, see [the official Spring examples](https://github.com/spring-projects/spring-data-examples).
+
 #### Widgets, Sprockets, and Categories
 The data model is excessively simple, yet ridiculously abstract. The point of this is to focus on the features provided by Spring Data
 JPA / Spring Boot, rather than the details of the application.
