@@ -16,8 +16,8 @@ have a `Color` (why not?).
 Spring JPA Repositories are fueled by reflection (read: voodoo and black magic). You can construct an interface which is filled out
 with queries based solely on the name of the method. The direct mapping from repository methods to queries feels largely undocumented.
 
-This means that you can spend hours figuring out how to get a JPQL query to work (see WidgetRepository:32) or learn some black magic by
-trial-and-error with repository names (see WidgetRepository:42).
+This means that you can spend hours figuring out how to get a JPQL query to work (see [WidgetRepository:32](https://github.com/NiftySoft/example-spring-data-jpa/blob/master/src/main/java/com/niftysoft/example/repository/WidgetRepository.java#L33)) or learn some black magic by
+trial-and-error with repository names (see [WidgetRepository:42](https://github.com/NiftySoft/example-spring-data-jpa/blob/master/src/main/java/com/niftysoft/example/repository/WidgetRepository.java#L42)).
 
 ### WidgetViews
 
