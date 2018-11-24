@@ -10,8 +10,8 @@ import java.util.Set;
 
 @Entity
 @Getter @Setter
-@EqualsAndHashCode
-public class Bin {
+@EqualsAndHashCode(exclude={"sprockets", "color"})
+public class Category {
     public enum Color {
         RED,
         BLUE,
@@ -22,19 +22,17 @@ public class Bin {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
-    @ManyToMany
-    @JoinTable(
-            name="SprocketBin",
-            joinColumns= {@JoinColumn(name="bin_id")},
-            inverseJoinColumns = {@JoinColumn(name="sprocket_id")}
-    )
+    /**
+     * One half of the JPA needed to setup a many-to-many relationship. The value of mappedBy refers to Sprocket::categories.
+     */
+    @ManyToMany(mappedBy="categories")
     private Set<Sprocket> sprockets = new HashSet<>();
 
     private Color color;
 
-    protected Bin() { }
+    protected Category() { }
 
-    public Bin(Color color) {
+    public Category(Color color) {
         this.color = color;
     }
 }

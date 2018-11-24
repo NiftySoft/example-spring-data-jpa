@@ -4,10 +4,10 @@ import com.niftysoft.example.model.views.WidgetViews;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -16,6 +16,7 @@ import java.util.List;
 @Entity
 @Getter @Setter
 @EqualsAndHashCode
+@ToString(of={"id", "type"})
 public class Widget implements WidgetViews.SprocketsOnly, WidgetViews.IdOnly {
 
     public enum Type {
@@ -30,7 +31,7 @@ public class Widget implements WidgetViews.SprocketsOnly, WidgetViews.IdOnly {
 
     private Type type;
 
-    @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name="widgetId")
     private List<Sprocket> sprockets = new ArrayList<>();
 

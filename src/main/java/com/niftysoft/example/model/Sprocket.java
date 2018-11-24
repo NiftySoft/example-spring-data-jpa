@@ -27,8 +27,27 @@ public class Sprocket {
 
     private Type type;
 
-    @ManyToMany(mappedBy="sprockets")
-    private List<Bin> bins = new ArrayList<>();
+    /**
+     * One half of the JPA needed to set up a Many-to-Many relationship. Whichever class contains the @JoinTable
+     * annotation is said to "own" the relationship. See also Category::sprockets
+     */
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @JoinTable(
+            name = "SprocketCategory",
+            inverseJoinColumns = {@JoinColumn(name="category_id")},
+            joinColumns = {@JoinColumn(name="sprocket_id")}
+    )
+    private List<Category> categories = new ArrayList<>();
+
+    public void addCategory(Category category) {
+        this.categories.add(category);
+        category.getSprockets().add(this);
+    }
+
+    public void removeCategory(Category category) {
+        this.categories.remove(category);
+        category.getSprockets().remove(this);
+    }
 
     protected Sprocket() { }
 
