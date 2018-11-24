@@ -35,7 +35,10 @@ little better than DTOs, which I now believe should only be used for queries tha
 ### Streaming Cursors
 
 Spring Data JPA can return large chunks of data as part of a java.util.stream.Stream, rather than making a single 
-massive call to the database to return all of the data. See `WidgetRepository::findAllStreamBy`. 
+massive call to the database to return all of the data. See [`WidgetRepository::findAllStreamBy`](https://github.com/NiftySoft/example-spring-data-jpa/blob/master/src/main/java/com/niftysoft/example/repository/WidgetRepository.java#L48).
+
+Please know that Spring **ignores** most things between `find`, `findAll`, or `findDistinct` and `By`. You can insert your own words
+there to distinguish between different methods. This does not appear to be very well documented at this time.
 
 **Caveat:** This still needs to be tested against an actual DB container. (H2 doesn't count!)
 
