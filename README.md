@@ -22,7 +22,7 @@ trial-and-error with repository names (see [WidgetRepository:42](https://github.
 ### WidgetViews
 
 One design decision made here is to expose multiple views of a `Widget` via interfaces. One is not always interested in
-all the detail found in a widget, and you want to project or expose different views for security purposes. The `WidgetViews`
+all the detail found in an entity, and sometimes you want to project or expose different views for security purposes. The `WidgetViews`
 class provides a common namespace for all of the different views of a Widget. It contains the `IdOnly` and `SprocketsOnly`
 views, which are just read-only Java interfaces implementing the subset of the data exposed by the view.
 
