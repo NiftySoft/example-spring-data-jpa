@@ -46,10 +46,12 @@ public class WidgetRespositoryTest {
 
         w.setSprockets(sprockets);
 
+        // This save should cascade, even though Sprockets were not saved individually.
         underTest.save(w);
 
         WidgetViews.SprocketsOnly sprocketsFound = underTestSprocketsOnly.findById(w.getId());
 
         assertThat(sprocketsFound.getSprockets()).containsExactlyElementsOf(sprockets);
     }
+
 }
