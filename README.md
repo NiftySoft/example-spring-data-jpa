@@ -4,7 +4,12 @@ Very simple demo explainatory demo exhibiting some of the basics of Spring Data 
 multiple views of the same model.
 
 #### Widgets, Sprockets, and Categories
-The data model is excessively simple, yet ridiculously abstract. It consists of a single one-to-many relationship, and another many-to-many relationship. Each `Widget` contains multiple `Sprockets`. `Sprockets` can be found in one of several `Categories`. Both `Sprockets` and `Widgets` have a `Type`. `Categories` have a `Color` (why not?).
+The data model is excessively simple, yet ridiculously abstract. The point of this is to focus on the features provided by Spring Data
+JPA / Spring Boot, rather than the details of the application.
+
+The model consists of a single one-to-many relationship, and another many-to-many relationship. Each `Widget` contains multiple
+`Sprockets`. `Sprockets` can be found in one of several `Categories`. Both `Sprockets` and `Widgets` have a `Type`. `Categories`
+have a `Color` (why not?).
 
 ### WidgetViews
 
