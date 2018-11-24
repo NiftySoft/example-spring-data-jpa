@@ -3,33 +3,45 @@
 Very simple demo explainatory demo exhibiting some of the basics of Spring Data JPA, and demonstrating a way to expose
 multiple views of the same model.
 
-#### Widgets and Sprockets
-The data model is excessively simple, but abstract. It consists of two entities which exist in a single one-to-many
-relationship. Each `Widget` contains multiple `Sprockets`. Both `Sprockets` and `Widgets` have a type.
+#### Widgets, Sprockets, and Categories
+The data model is excessively simple, yet ridiculously abstract. The point of this is to focus on the features provided by Spring Data
+JPA / Spring Boot, rather than the details of the application.
+
+The model consists of a single one-to-many relationship, and another many-to-many relationship. Each `Widget` contains multiple
+`Sprockets`. `Sprockets` can be found in one of several `Categories`. Both `Sprockets` and `Widgets` have a `Type`. `Categories`
+have a `Color` (why not?).
+
+### Multiple Joins
+
+Spring JPA Repositories are fueled by reflection (read: voodoo and black magic). You can construct an interface which is filled out
+with queries based solely on the name of the method. The direct mapping from repository methods to queries feels largely undocumented.
+
+This means that you can spend hours figuring out how to get a JPQL query to work (see WidgetRepository:32) or learn some black magic by
+trial-and-error with repository names (see WidgetRepository:42).
 
 ### WidgetViews
 
-One design decision made here is to provide multiple views of a `Widget`. One is not always interested in all the detail
-found in a widget, and you want to project or expose different views for security purposes. The `WidgetViews` class 
-provides a namespace to store different views of a Widget. It contains the `IdOnly` and `SprocketsOnly` views, which
-are implemente as Java interfaces.
+One design decision made here is to expose multiple views of a `Widget` via interfaces. One is not always interested in
+all the detail found in a widget, and you want to project or expose different views for security purposes. The `WidgetViews`
+class provides a common namespace for all of the different views of a Widget. It contains the `IdOnly` and `SprocketsOnly`
+views, which are just read-only Java interfaces implementing the subset of the data exposed by the view.
 
-Access to these views is provided via the `SprocketsOnly` subrepository of the `WidgetRepository`. `SprocketsOnly` is a
-Spring Data JPA repository which is an inner interface of the `WidgetRepository`. It makes some sense, in this case,
-to use an inner interface rather than a top-level interface, since the `SprocketsOnly` interface is just another view
-of a `Widget`. When a caller wants to get the `SprocketsOnly` view of a `Widget`, they still have to go to the
-`WidgetRepository` to get it.
-
-Whether this is the greatest way to organize code "subrepositories" is subject to scrutiny. In any case, there's no
-question that Spring Data JPA permits it rather easily.
+Access to these views is provided via the `SprocketsOnly` interface to `Widget`. `Widget` implements `SprocketsOnly`, 
+which is just one way to expose only certain attributes to the consumer of a REST API. I am finding that I like this a
+little better than DTOs, which I now believe should only be used for data results that involve multiple classes of Entities
+in one request.
 
 ### Streaming Cursors
 
 Spring Data JPA can return large chunks of data as part of a java.util.stream.Stream, rather than making a single 
-massive call to the database to return all of the data. This still needs to be tested against an actual DB container.
+massive call to the database to return all of the data. See `WidgetRepository::findAllStreamBy`. 
+
+**Caveat:** This still needs to be tested against an actual DB container. (H2 doesn't count!)
 
 ### WidgetAsyncRepository
 
 Spring Data JPA has support for Asynchronous queries which return a Future. This can increase throughput by running
-multiple unrelated database calls in parallel, but also needs to be tested against an actual DB container.
+multiple unrelated database calls in parallel, but also needs to be tested against an actual DB container. See `WidgetRepository::*Async*`.
+
+**Caveat:** This still needs to be tested against an actual DB container. (H2 doesn't count!)
 
