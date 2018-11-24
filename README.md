@@ -28,8 +28,7 @@ views, which are just read-only Java interfaces implementing the subset of the d
 
 Access to these views is provided via the `SprocketsOnly` interface to `Widget`. `Widget` implements `SprocketsOnly`, 
 which is just one way to expose only certain attributes to the consumer of a REST API. I am finding that I like this a
-little better than DTOs, which I now believe should only be used for data results that involve multiple classes of Entities
-in one request.
+little better than DTOs, which I now believe should only be used for queries that return properties from multiple entities.
 
 ### Streaming Cursors
 
