@@ -1,12 +1,9 @@
 package com.niftysoft.example.repository;
 
 import com.niftysoft.example.model.Sprocket;
-import com.niftysoft.example.model.Widget;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Stream;
 
 /**
  * SprocketRepository is a repository for Sprockets.
